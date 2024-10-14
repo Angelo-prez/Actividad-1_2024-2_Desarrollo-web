@@ -1,0 +1,38 @@
+-- Crear base de datos
+CREATE DATABASE crud_mvc;
+
+-- Seleccionar base de datos
+USE crud_mvc;
+
+CREATE TABLE usuario (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  password VARCHAR(255) NOT NULL,
+  nombre VARCHAR(50) NOT NULL,
+  apellidos VARCHAR(50) NOT NULL,
+  rol VARCHAR(20) NOT NULL,
+  email VARCHAR(100) UNIQUE NOT NULL,
+  telefono VARCHAR(20) NOT NULL,
+  estado VARCHAR(10) NOT NULL,
+  fecha_registro DATE NOT NULL
+);
+Select * from usuario;
+
+-- Tabla 12: Suscripcion
+CREATE TABLE suscripcion (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  tipo VARCHAR(50) NOT NULL,
+  costo FLOAT NOT NULL,
+  duracion INT NOT NULL,
+  fecha_inicio DATE NOT NULL,
+  usuario_id INT NOT NULL,
+  FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+);
+
+select * from suscripcion;
+
+INSERT INTO usuario (password, nombre, apellidos, rol, email, telefono, estado) 
+VALUES ('123', 'gustavo', 'ortega', 'admin', 'admin@example.com', '1234567890', 'activo');
+INSERT INTO usuario (password, nombre, apellidos, rol, email, telefono, estado) 
+VALUES ('456', 'jhon', 'arrieta', 'docente', 'docente@example.com', '12345', 'activo');
+INSERT INTO usuario (password, nombre, apellidos, rol, email, telefono, estado) 
+VALUES ('12345', 'juan', 'perez', 'estudiante', 'juan@example.com', '67890', 'inactivo');
